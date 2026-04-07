@@ -13,6 +13,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def index
+    @posts = Post.all
+  end
+
+  def show
+    @post = Post.find(params[:id])
+  end
+
   private
 
   def post_params
