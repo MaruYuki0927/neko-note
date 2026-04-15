@@ -13,4 +13,11 @@
     <%= image_tag post.image %>
   <% end %>
 
+  投稿者：<%= post.user.name %>
+
+  <% if post.user == current_user %>
+    <%= link_to "編集", edit_post_path(post) %>
+    <%= link_to "削除", post_path(post), data: { turbo_method: :delete } %>
+  <% end %>
+
 <% end %>

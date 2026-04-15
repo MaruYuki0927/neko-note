@@ -1,10 +1,14 @@
 class PostsController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def new
     @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
 
     if @post.save
       redirect_to root_path
@@ -42,6 +46,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to posts_path unless @post
+  end
 
   def post_params
     params.require(:post).permit(:title, :body, :image)
