@@ -12,3 +12,30 @@
   <%= link_to "編集", edit_post_path(@post) %>
   <%= link_to "削除", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
 <% end %>
+
+
+<h3>コメントする</h3>
+
+<%= form_with(model: [@post, Comment.new]) do |f| %>
+  <div>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.submit "コメントする" %>
+  </div>
+<% end %>
+
+
+<h3>コメント一覧</h3>
+
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong><%= comment.user.name %>：</strong>
+    <%= comment.body %>
+    
+    <% if comment.user == current_user %>
+    <%= link_to "削除", post_comment_path(@post, comment),
+        data: { turbo_method: :delete, turbo_confirm: "削除する？" } %>
+  <% end %>
+  </p>
+<% end %>
