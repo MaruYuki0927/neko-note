@@ -14,6 +14,18 @@
 <% end %>
 
 
+<% if current_user.likes.find_by(post_id: @post.id) %>
+  <%= link_to "いいね解除", post_like_path(@post, current_user.likes.find_by(post_id: @post.id)),
+      data: { turbo_method: :delete } %>
+<% else %>
+  <%= link_to "いいね", post_likes_path(@post),
+      data: { turbo_method: :post } %>
+<% end %>
+
+
+<p>いいね数：<%= @post.likes.count %></p>
+
+
 <h3>コメントする</h3>
 
 <%= form_with(model: [@post, Comment.new]) do |f| %>
