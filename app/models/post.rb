@@ -1,9 +1,11 @@
 class Post < ApplicationRecord
-  #belongs_to :user
-  #belongs_to :cat
-  has_one_attached :image
   belongs_to :user
+  belongs_to :cat
+
+  has_one_attached :image
+
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  belongs_to :cat
+
+  validates :cat_id, presence: true
 end

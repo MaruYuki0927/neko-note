@@ -1,0 +1,12 @@
+<h1>猫を登録</h1>
+
+<%= form_with model: @cat, local: true do |f| %>
+  <div>
+    <%= f.label :name, "猫の名前" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit "登録" %>
+  </div>
+<% end %>

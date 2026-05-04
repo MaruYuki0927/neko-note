@@ -18,6 +18,11 @@
   </div>
 
   <div>
+    <%= f.label :cat_id, "猫を選ぶ" %>
+    <%= f.collection_select :cat_id, @cats, :id, :name, prompt: "猫を選んでください" %>
+  </div>
+
+  <div>
     <%= f.submit "投稿する" %>
   </div>
 
