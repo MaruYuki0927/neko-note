@@ -15,6 +15,11 @@ class CatsController < ApplicationController
     end
   end
 
+  def show
+    @cat = Cat.find(params[:id])
+    @posts = @cat.posts
+  end
+
   private
 
   def cat_params

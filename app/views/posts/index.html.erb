@@ -15,7 +15,9 @@
 
   投稿者：<%= link_to post.user.name, user_path(post.user) %>
 
-  <p>猫：<%= post.cat.name %></p>
+  <p>
+    猫：<%= link_to post.cat.name, cat_path(post.cat) %>
+  </p>
 
   <% if post.user == current_user %>
     <%= link_to "編集", edit_post_path(post) %>
