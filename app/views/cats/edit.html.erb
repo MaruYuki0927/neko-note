@@ -1,8 +1,9 @@
-<h1>猫を登録</h1>
+<h1>猫プロフィール編集</h1>
 
-<%= form_with model: @cat, local: true do |f| %>
+<%= form_with model: @cat do |f| %>
+
   <div>
-    <%= f.label :name, "猫の名前" %>
+    <%= f.label :name, "名前" %>
     <%= f.text_field :name %>
   </div>
 
@@ -17,6 +18,7 @@
   </div>
 
   <div>
-    <%= f.submit "登録" %>
+    <%= f.submit "更新する" %>
   </div>
+
 <% end %>

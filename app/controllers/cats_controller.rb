@@ -1,5 +1,6 @@
 class CatsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @cat = Cat.new
@@ -20,9 +21,26 @@ class CatsController < ApplicationController
     @posts = @cat.posts
   end
 
+  def edit
+  end
+  
+  def update
+    if @cat.update(cat_params)
+      redirect_to cat_path(@cat)
+    else
+      render :edit
+    end
+  end
+
+  def correct_user
+    @cat = current_user.cats.find_by(id: params[:id])
+  
+    redirect_to root_path unless @cat
+  end
+
   private
 
   def cat_params
-    params.require(:cat).permit(:name)
+    params.require(:cat).permit(:name, :age, :introduction)
   end
 end

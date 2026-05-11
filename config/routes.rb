@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :cats, only: [:new, :create, :show]
+  resources :cats, only: [:new, :create, :show, :edit, :update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

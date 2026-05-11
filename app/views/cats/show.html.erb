@@ -1,5 +1,19 @@
 <h1><%= @cat.name %> のページ</h1>
 
+<% if @cat.user == current_user %>
+  <%= link_to "プロフィール編集", edit_cat_path(@cat) %>
+<% end %>
+
+<p>
+  年齢：
+  <%= @cat.age.present? ? "#{@cat.age}歳" : "未設定" %>
+</p>
+
+<p>
+  自己紹介：
+  <%= @cat.introduction.present? ? @cat.introduction : "未設定" %>
+</p>
+
 <h2>投稿一覧</h2>
 
 <% @posts.each do |post| %>
