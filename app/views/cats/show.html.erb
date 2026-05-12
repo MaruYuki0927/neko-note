@@ -1,4 +1,13 @@
+<% if @cat.image.attached? %>
+  <%= image_tag @cat.image, size: "200x200" %>
+<% end %>
+
 <h1><%= @cat.name %> のページ</h1>
+
+<p>
+  飼い主：
+  <%= link_to @cat.user.name, user_path(@cat.user) %>
+</p>
 
 <% if @cat.user == current_user %>
   <%= link_to "プロフィール編集", edit_cat_path(@cat) %>

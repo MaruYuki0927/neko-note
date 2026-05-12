@@ -15,6 +15,7 @@
     <nav>
       <%= link_to "トップ", root_path %> |
       <%= link_to "投稿一覧", posts_path %> |
+      <%= link_to "猫一覧", cats_path %> |
 
       <% if user_signed_in? %>
         <%= link_to "マイページ", user_path(current_user) %> |

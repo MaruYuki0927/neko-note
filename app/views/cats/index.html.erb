@@ -1,0 +1,21 @@
+<h1>猫一覧</h1>
+
+<% @cats.each do |cat| %>
+  <div>
+
+    <% if cat.image.attached? %>
+      <%= image_tag cat.image, size: "100x100" %>
+    <% end %>
+
+    <p>
+      <%= link_to cat.name, cat_path(cat) %>
+    </p>
+
+    <p>
+      飼い主：<%= link_to cat.user.name, user_path(cat.user) %>
+    </p>
+
+  </div>
+
+  <hr>
+<% end %>
