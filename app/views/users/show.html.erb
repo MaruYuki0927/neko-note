@@ -1,5 +1,22 @@
 <h1><%= @user.name %>のマイページ</h1>
 
+<% unless @user == current_user %>
+
+  <% if current_user.followings.include?(@user) %>
+
+    <%= button_to "フォロー解除",
+      user_relationships_path(@user),
+      method: :delete %>
+
+  <% else %>
+
+    <%= button_to "フォロー",
+      user_relationships_path(@user) %>
+
+  <% end %>
+
+<% end %>
+
 <h2>投稿一覧</h2>
 
 <% @posts.each do |post| %>
