@@ -1,17 +1,31 @@
 <h1><%= @user.name %>のマイページ</h1>
 
-<% unless @user == current_user %>
+<p>
+  <%= link_to "フォロー #{@user.followings.count}",
+      followings_user_path(@user) %>
+</p>
 
-  <% if current_user.followings.include?(@user) %>
+<p>
+  <%= link_to "フォロワー #{@user.followers.count}",
+      followers_user_path(@user) %>
+</p>
 
-    <%= button_to "フォロー解除",
-      user_relationships_path(@user),
-      method: :delete %>
+<% if user_signed_in? %>
 
-  <% else %>
+  <% unless @user == current_user %>
 
-    <%= button_to "フォロー",
-      user_relationships_path(@user) %>
+    <% if current_user.followings.include?(@user) %>
+
+      <%= button_to "フォロー解除",
+        user_relationships_path(@user),
+        method: :delete %>
+
+    <% else %>
+
+      <%= button_to "フォロー",
+        user_relationships_path(@user) %>
+
+    <% end %>
 
   <% end %>
 

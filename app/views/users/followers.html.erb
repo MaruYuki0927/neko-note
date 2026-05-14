@@ -1,0 +1,15 @@
+<h1><%= @user.name %> さんのフォロワー一覧</h1>
+
+<% @users.each do |user| %>
+
+  <div>
+
+    <p>
+      <%= link_to user.name, user_path(user) %>
+    </p>
+
+  </div>
+
+  <hr>
+
+<% end %>

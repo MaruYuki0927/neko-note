@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resource :relationships, only: [:create, :destroy]
+    
+    member do
+      get :followings
+      get :followers
+    end
   end
 
   resources :cats, only: [:index, :new, :create, :show, :edit, :update]
