@@ -14,3 +14,26 @@
  *= require_self
  */
  @import "bootstrap";
+
+ .post-image {
+    height: 300px;
+    object-fit: contain;
+    background-color: #1e1e1e;
+  }
+
+  body {
+    background-color: #121212;
+    color: #f5f5f5;
+    font-family: serif;
+  }
+
+  .card {
+    background-color: #f8f8f8;
+    border: 2px solid #f8f8f8;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
