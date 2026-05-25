@@ -80,9 +80,90 @@
             いいね数：<%= @post.likes.count %>
           </p>
 
+          <p class="text-dark">
+            コメント数：<%= @post.comments.count %>
+          </p>
+
         </div>
 
       </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="container mt-4">
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+      <h3 class="mb-3 text-white">コメントする</h3>
+
+      <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+          <%= form_with(model: [@post, Comment.new]) do |f| %>
+
+            <div class="mb-3">
+
+              <%= f.text_area :body,
+                  class: "form-control",
+                  rows: 3,
+                  placeholder: "コメントを書く..." %>
+
+            </div>
+
+            <%= f.submit "コメントする",
+                class: "btn btn-dark" %>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+      <h3 class="mb-3 text-white">コメント一覧</h3>
+
+      <% @post.comments.each do |comment| %>
+
+        <div class="card shadow-sm mb-3">
+
+          <div class="card-body">
+
+            <p class="mb-2">
+
+              <strong>
+                <%= comment.user.name %>
+              </strong>
+
+            </p>
+
+            <p class="text-dark">
+              <%= comment.body %>
+            </p>
+
+            <% if comment.user == current_user %>
+
+              <%= link_to "削除",
+                  post_comment_path(@post, comment),
+                  data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "削除する？"
+                  },
+                  class: "btn btn-outline-dark btn-sm" %>
+
+            <% end %>
+
+          </div>
+
+        </div>
+
+      <% end %>
 
     </div>
 
