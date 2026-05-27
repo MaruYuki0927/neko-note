@@ -8,6 +8,12 @@
   </div>
 
   <div>
+    <%= f.label :gender, "性別" %>
+    <%= f.select :gender,
+        ["男の子", "女の子"] %>
+  </div>
+
+  <div>
     <%= f.label :age, "年齢" %>
     <%= f.number_field :age %>
   </div>

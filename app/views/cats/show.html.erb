@@ -1,39 +1,124 @@
-<% if @cat.image.attached? %>
-  <%= image_tag @cat.image, size: "200x200" %>
-<% end %>
+<div class="container mt-4">
 
-<h1><%= @cat.name %> のページ</h1>
+  <div class="row justify-content-center">
 
-<p>
-  飼い主：
-  <%= link_to @cat.user.name, user_path(@cat.user) %>
-</p>
+    <div class="col-md-8">
 
-<% if @cat.user == current_user %>
-  <%= link_to "プロフィール編集", edit_cat_path(@cat) %>
-<% end %>
+      <div class="card shadow-sm text-center mb-4">
 
-<p>
-  年齢：
-  <%= @cat.age.present? ? "#{@cat.age}歳" : "未設定" %>
-</p>
+        <div class="card-body">
 
-<p>
-  自己紹介：
-  <%= @cat.introduction.present? ? @cat.introduction : "未設定" %>
-</p>
+          <% if @cat.image.attached? %>
 
-<h2>投稿一覧</h2>
+            <%= image_tag @cat.image,
+                class: "rounded-circle cat-icon-lg mb-3" %>
 
-<% @posts.each do |post| %>
-  <div>
-    <p>タイトル：<%= post.title %></p>
-    <p>内容：<%= post.body %></p>
+          <% end %>
 
-    <% if post.image.attached? %>
-      <%= image_tag post.image, size: "200x200" %>
-    <% end %>
+          <h1 class="mb-3 text-dark">
 
-    <hr>
+            <%= @cat.name %>
+
+          </h1>
+
+          <p class="text-muted">
+
+            <%= @cat.age.present? ? "#{@cat.age}歳" : "年齢未設定" %>
+
+            /
+
+            <%= @cat.gender.present? ? @cat.gender : "性別未設定" %>
+
+          </p>
+
+          <p>
+
+            飼い主：
+            <%= link_to @cat.user.name,
+                user_path(@cat.user),
+                class: "text-dark text-decoration-none" %>
+
+          </p>
+
+          <p class="mt-3 text-dark">
+
+            <%= @cat.introduction.present? ?
+                @cat.introduction : "自己紹介未設定" %>
+
+          </p>
+
+          <% if @cat.user == current_user %>
+
+            <%= link_to "プロフィール編集",
+                edit_cat_path(@cat),
+                class: "btn btn-dark btn-sm mt-2" %>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
-<% end %>
+
+</div>
+
+
+<h2 class="text-white mb-4">
+
+  <%= @cat.name %> の投稿一覧
+
+</h2>
+
+<div class="row">
+
+  <% @posts.each do |post| %>
+
+    <div class="col-md-6">
+
+      <div class="card mb-4 shadow-sm">
+
+        <% if post.image.attached? %>
+
+          <%= image_tag post.image,
+              class: "card-img-top post-image" %>
+
+        <% end %>
+
+        <div class="card-body">
+
+          <h3 class="card-title">
+
+            <%= link_to post.title,
+                post_path(post),
+                class: "text-dark text-decoration-none" %>
+
+          </h3>
+
+          <p class="card-text text-dark">
+
+            <%= post.body %>
+
+          </p>
+
+          <p class="text-muted">
+
+            ❤️ <%= post.likes.count %>
+
+            <span class="ms-3">
+              💬 <%= post.comments.count %>
+            </span>
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <% end %>
+
+</div>
