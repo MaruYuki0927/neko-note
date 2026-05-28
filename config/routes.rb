@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+
+      get :edit
+      patch :update
     end
   end
 

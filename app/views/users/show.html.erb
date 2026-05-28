@@ -1,41 +1,139 @@
-<h1><%= @user.name %>のマイページ</h1>
+<div class="container mt-4">
 
-<p>
-  <%= link_to "フォロー #{@user.followings.count}",
-      followings_user_path(@user) %>
-</p>
+  <div class="row justify-content-center">
 
-<p>
-  <%= link_to "フォロワー #{@user.followers.count}",
-      followers_user_path(@user) %>
-</p>
+    <div class="col-md-8">
 
-<% if user_signed_in? %>
+      <div class="card shadow-sm text-center mb-4">
 
-  <% unless @user == current_user %>
+        <div class="card-body">
 
-    <% if current_user.followings.include?(@user) %>
+          <h1 class="mb-3 text-dark">
 
-      <%= button_to "フォロー解除",
-        user_relationships_path(@user),
-        method: :delete %>
+            <%= @user.name %>
 
-    <% else %>
+          </h1>
 
-      <%= button_to "フォロー",
-        user_relationships_path(@user) %>
+          <p class="text-muted">
 
+            <%= @user.profile.present? ?
+                @user.profile : "自己紹介未設定" %>
+          
+          </p>
+
+          <p>
+
+            <%= link_to "フォロー #{@user.followings.count}",
+                followings_user_path(@user),
+                class: "text-dark text-decoration-none me-3" %>
+
+            <%= link_to "フォロワー #{@user.followers.count}",
+                followers_user_path(@user),
+                class: "text-dark text-decoration-none" %>
+
+          </p>
+
+          <% if user_signed_in? %>
+
+          <% if @user == current_user %>
+
+              <%= link_to "プロフィール編集",
+                edit_user_path(@user),
+                class: "btn btn-outline-dark btn-sm mt-2" %>
+              <% end %>
+
+            <% unless @user == current_user %>
+
+              <% if current_user.followings.include?(@user) %>
+
+                <%= button_to "フォロー解除",
+                    user_relationships_path(@user),
+                    method: :delete,
+                    class: "btn btn-outline-dark btn-sm" %>
+
+              <% else %>
+
+                <%= button_to "フォロー",
+                    user_relationships_path(@user),
+                    class: "btn btn-dark btn-sm" %>
+
+              <% end %>
+
+            <% end %>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+
+
+
+      <% @user.cats.each do |cat| %>
+
+      <div class="mb-5">
+    
+         <h2 class="mb-4">
+
+          🐱
+          <%= link_to cat.name,
+              cat_path(cat),
+              class: "text-white text-decoration-none" %>
+        
+         </h2>
+    
+        <div class="row">
+    
+          <% cat.posts.each do |post| %>
+    
+            <div class="col-md-6">
+    
+              <div class="card mb-4 shadow-sm">
+    
+                <% if post.image.attached? %>
+    
+                  <%= image_tag post.image,
+                      class: "card-img-top post-image" %>
+    
+                <% end %>
+    
+                <div class="card-body">
+    
+                  <h3 class="card-title">
+    
+                    <%= link_to post.title,
+                        post_path(post),
+                        class: "text-dark text-decoration-none" %>
+    
+                  </h3>
+    
+                  <p class="card-text text-dark">
+    
+                    <%= post.body %>
+    
+                  </p>
+    
+                  <p class="text-muted">
+    
+                    ❤️ <%= post.likes.count %>
+    
+                    <span class="ms-3">
+                      💬 <%= post.comments.count %>
+                    </span>
+    
+                  </p>
+    
+                </div>
+    
+              </div>
+    
+            </div>
+    
+          <% end %>
+    
+        </div>
+    
+      </div>
+    
     <% end %>
-
-  <% end %>
-
-<% end %>
-
-<h2>投稿一覧</h2>
-
-<% @posts.each do |post| %>
-  <div>
-    <h3><%= link_to post.title, post_path(post) %></h3>
-    <p><%= post.body %></p>
-  </div>
-<% end %>
