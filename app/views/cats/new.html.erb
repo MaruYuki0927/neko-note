@@ -1,33 +1,82 @@
-<h1>猫を登録</h1>
+<div class="container mt-5">
 
-<%= form_with model: @cat, local: true do |f| %>
-  <div>
-    <%= f.label :name, "猫の名前" %>
-    <%= f.text_field :name %>
+  <div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+      <div class="card shadow-sm">
+
+        <div class="card-body">
+
+          <h2 class="text-center mb-4 text-dark">
+            猫を登録
+          </h2>
+
+          <%= form_with model: @cat, local: true do |f| %>
+
+            <div class="mb-3">
+
+              <%= f.label :name, "猫の名前" %>
+
+              <%= f.text_field :name,
+                  class: "form-control" %>
+
+            </div>
+
+            <div class="mb-3">
+
+              <%= f.label :gender, "性別" %>
+
+              <%= f.select :gender,
+                  ["男の子", "女の子"],
+                  {},
+                  class: "form-select" %>
+
+            </div>
+
+            <div class="mb-3">
+
+              <%= f.label :age, "年齢" %>
+
+              <%= f.number_field :age,
+                  class: "form-control" %>
+
+            </div>
+
+            <div class="mb-3">
+
+              <%= f.label :introduction, "自己紹介" %>
+
+              <%= f.text_area :introduction,
+                  rows: 4,
+                  class: "form-control" %>
+
+            </div>
+
+            <div class="mb-3">
+
+              <%= f.label :image, "猫画像" %>
+
+              <%= f.file_field :image,
+                  class: "form-control" %>
+
+            </div>
+
+            <div class="text-center">
+
+              <%= f.submit "登録する",
+                  class: "btn btn-dark" %>
+
+            </div>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div>
-    <%= f.label :gender, "性別" %>
-    <%= f.select :gender,
-        ["男の子", "女の子"] %>
-  </div>
-
-  <div>
-    <%= f.label :age, "年齢" %>
-    <%= f.number_field :age %>
-  </div>
-
-  <div>
-    <%= f.label :introduction, "自己紹介" %>
-    <%= f.text_area :introduction %>
-  </div>
-
-  <div>
-    <%= f.label :image, "猫画像" %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div>
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
+</div>
