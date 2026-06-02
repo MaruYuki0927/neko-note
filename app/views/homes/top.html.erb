@@ -1,1 +1,31 @@
-<h1>Topページ</h1>
+<div class="hero">
+
+  <div class="overlay">
+
+    <div class="hero-content">
+
+      <h1 class="hero-title">
+        NekoNote
+      </h1>
+
+      <p class="hero-subtitle">
+       猫との毎日を記録しよう
+      </p>
+
+      <div class="hero-buttons">
+
+        <%= link_to "投稿一覧",
+            posts_path,
+            class: "btn btn-light me-2" %>
+
+        <%= link_to "猫一覧",
+          cats_path,
+          class: "btn btn-outline-light" %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
