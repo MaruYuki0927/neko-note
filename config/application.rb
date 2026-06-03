@@ -25,5 +25,7 @@ module NekoNote
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_storage.variant_processor = :vips
+
+    config.i18n.default_locale = :ja
   end
 end

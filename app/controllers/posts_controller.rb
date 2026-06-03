@@ -12,7 +12,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to root_path
+      redirect_to posts_path,
+                  notice: "投稿しました！"
     else
       render :new
     end

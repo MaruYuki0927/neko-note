@@ -10,7 +10,8 @@ class CatsController < ApplicationController
     @cat = current_user.cats.build(cat_params)
 
     if @cat.save
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user),
+                  notice: "猫を登録しました！"
     else
       render :new
     end

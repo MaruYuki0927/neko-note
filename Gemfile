@@ -71,4 +71,7 @@ gem "image_processing", "~> 1.2"
 gem 'devise'
 
 gem "bootstrap"
+
 gem "sassc-rails"
+
+gem "devise-i18n"

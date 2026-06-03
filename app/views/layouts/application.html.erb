@@ -2,7 +2,11 @@
 <html>
   <head>
     <title>NekoNote</title>
+
+    <%= favicon_link_tag "favicon.png" %>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -66,9 +70,29 @@
     
     </nav>
 
+<% flash.each do |type, message| %>
+
+  <div class="alert alert-success text-center">
+
+    <%= message %>
+
+  </div>
+
+<% end %>
+
 
   
  <%= yield %>
+
+ <% unless current_page?(root_path) %>
+
+  <div class="corner-cat">
+
+    <%= image_tag "favicon.png" %>
+
+  </div>
+
+ <% end %>
 
    <footer class="text-center py-4 mt-5">
 

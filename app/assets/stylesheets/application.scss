@@ -113,3 +113,15 @@ body {
     transform: translateY(0);
   }
 }
+
+.corner-cat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.corner-cat img {
+  width: 80px;
+  opacity: 0.8;
+}
