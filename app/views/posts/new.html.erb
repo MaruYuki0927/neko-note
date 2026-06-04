@@ -29,7 +29,12 @@
 
               <%= f.text_area :body,
                   rows: 5,
-                  class: "form-control" %>
+                  class: "form-control",
+                  id: "post_body" %>
+
+              <p id="char-count" class="text-secondary mt-2">
+                0文字
+              </p>
 
             </div>
 

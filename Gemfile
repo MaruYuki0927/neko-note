@@ -75,3 +75,5 @@ gem "bootstrap"
 gem "sassc-rails"
 
 gem "devise-i18n"
+
+gem "kaminari"
