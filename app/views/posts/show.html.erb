@@ -8,7 +8,7 @@
 
         <% if @post.image.attached? %>
           <%= image_tag @post.image,
-              class: "card-img-top post-image" %>
+              class: "post-detail-image" %>
         <% end %>
 
         <div class="card-body">
@@ -47,7 +47,7 @@
                 post_path(@post),
                 data: {
                   turbo_method: :delete,
-                  turbo_confirm: "本当に削除しますか？"
+                  turbo_confirm: "削除した投稿は元に戻せません。本当に削除しますか？"
                 },
                 class: "btn btn-outline-dark btn-sm" %>
 
@@ -155,7 +155,7 @@
                   post_comment_path(@post, comment),
                   data: {
                     turbo_method: :delete,
-                    turbo_confirm: "削除する？"
+                    turbo_confirm: "削除したコメントは元に戻せません。本当に削除しますか？"
                   },
                   class: "btn btn-outline-dark btn-sm" %>
 

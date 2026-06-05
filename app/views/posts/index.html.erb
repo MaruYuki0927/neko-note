@@ -41,18 +41,24 @@
                   class: "text-dark" %>
             </p>
 
-            <% if post.user == current_user %>
+            <div class="post-actions">
+              <% if post.user == current_user %>
 
-              <%= link_to "編集",
-                  edit_post_path(post),
-                  class: "btn btn-dark btn-sm" %>
+                <%= link_to "編集",
+                    edit_post_path(post),
+                    class: "btn btn-dark btn-sm" %>
 
-              <%= link_to "削除",
-                  post_path(post),
-                  data: { turbo_method: :delete },
-                  class: "btn btn-outline-dark btn-sm" %>
+                <%= link_to "削除",
+                    post_path(post),
+                    data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "削除した投稿は元に戻せません。本当に削除しますか？"
+                    },
+                    class: "btn btn-outline-dark btn-sm" %>
 
-            <% end %>
+              <% end %>
+
+            </div>
 
           </div>
 

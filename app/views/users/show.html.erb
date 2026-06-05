@@ -46,10 +46,15 @@
 
               <% if current_user.followings.include?(@user) %>
 
-                <%= button_to "フォロー解除",
-                    user_relationships_path(@user),
-                    method: :delete,
-                    class: "btn btn-outline-dark btn-sm" %>
+              <%= button_to "フォロー解除",
+                  user_relationships_path(@user),
+                  method: :delete,
+                  class: "btn btn-outline-dark btn-sm",
+                  form: {
+                    data: {
+                      turbo_confirm: "#{@user.name}さんのフォローを解除しますか？"
+                     }
+                  } %>
 
               <% else %>
 
