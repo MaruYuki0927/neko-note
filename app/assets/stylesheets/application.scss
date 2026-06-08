@@ -147,3 +147,20 @@ body {
   display: block;
   margin: 0 auto;
 }
+
+.pagination .page-link {
+  background-color: #212529;
+  color: white;
+  border: 1px solid #444;
+}
+
+.pagination .page-link:hover {
+  background-color: #343a40;
+  color: white;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: white;
+  color: #212529;
+  border-color: white;
+}

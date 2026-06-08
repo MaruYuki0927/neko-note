@@ -37,6 +37,15 @@ class CatsController < ApplicationController
     end
   end
 
+  def destroy
+   @cat = current_user.cats.find(params[:id])
+
+   @cat.destroy
+
+   redirect_to user_path(current_user),
+              notice: "猫を削除しました！"
+  end
+
   def correct_user
     @cat = current_user.cats.find_by(id: params[:id])
   
