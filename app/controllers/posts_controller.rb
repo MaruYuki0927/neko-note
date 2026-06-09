@@ -21,8 +21,19 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.order(created_at: :desc)
-             .page(params[:page])
-             .per(6)
+
+    if params[:keyword].present?
+      @posts = @posts.joins(:cat).where(
+        "posts.title LIKE ?
+         OR posts.body LIKE ?
+         OR cats.name LIKE ?",
+        "%#{params[:keyword]}%",
+        "%#{params[:keyword]}%",
+        "%#{params[:keyword]}%"    
+      )
+    end
+
+    @posts = @posts.page(params[:page]).per(6)
   end
 
   def show
