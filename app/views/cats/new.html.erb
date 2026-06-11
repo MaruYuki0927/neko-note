@@ -12,6 +12,26 @@
             猫を登録
           </h2>
 
+          <% if @cat.errors.any? %>
+
+               <div class="alert alert-danger">
+
+                  <ul>
+
+                    <% @cat.errors.full_messages.each do |message| %>
+
+                       <li>
+                         <%= message %>
+                       </li>
+
+                    <% end %>
+
+                  </ul>
+
+              </div>
+
+            <% end %>
+
           <%= form_with model: @cat, local: true do |f| %>
 
             <div class="mb-3">
