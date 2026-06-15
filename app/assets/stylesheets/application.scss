@@ -164,3 +164,22 @@ body {
   color: #212529;
   border-color: white;
 }
+
+/* PCではドロップダウンを隠す */
+.mobile-menu {
+  display: none;
+}
+
+/* スマホだけ表示 */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    width: 100%;
+  }
+
+}
