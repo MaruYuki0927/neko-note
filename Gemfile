@@ -81,6 +81,8 @@ gem "devise-i18n"
 
 gem "kaminari"
 
+gem 'cloudinary'
+
 group :production do
   gem "pg"
 end
